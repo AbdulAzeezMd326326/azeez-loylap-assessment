@@ -5,6 +5,16 @@ import Box from '@mui/material/Box'
 function Billing({ plans = [], cards = [], company = null }) {
   const navigate = useNavigate()
 
+
+  const index = cards.findIndex((element) => element.companyId === company.id);
+  const index1 = plans.findIndex((element) => element.name === company.plan);
+
+  const[plan, setPlan] = useState(plans[index1])
+  const [card, setCard] = useState(cards[index]);
+
+
+
+
   if (!company) {
     navigate('/')
   }
