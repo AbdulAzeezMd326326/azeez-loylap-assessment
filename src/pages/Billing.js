@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import {Card, Button} from "react-bootstrap"
 import { useState } from "react";
-// import { width } from "@mui/system";
 
 function Billing({ plans = [], cards = [], company = null }) {
   const navigate = useNavigate()
@@ -11,9 +10,12 @@ function Billing({ plans = [], cards = [], company = null }) {
 
   const index = cards.findIndex((element) => element.companyId === company.id);
   const index1 = plans.findIndex((element) => element.name === company.plan);
+  // used findIndex method to return the particular index object that matches with company's --- 
+  //--- details and to display the returned data in our Ui 
 
   const[plan, setPlan] = useState(plans[index1])
   const [card, setCard] = useState(cards[index]);
+  // created state variables for plan and card using useState hook
 
 
 
@@ -27,7 +29,6 @@ function Billing({ plans = [], cards = [], company = null }) {
     <Link to="/">Go back to select</Link>
   
       <h3>Current Plan</h3>
-      {/*TODO: delete this and replace with your UI component*/}
       <Box  sx={{
         width: 400,
         height: 150,
@@ -40,7 +41,8 @@ function Billing({ plans = [], cards = [], company = null }) {
         <Card.Body>
           <Card.Title> Plan type : {plan.name}`</Card.Title>
           <Card.Text> Description  :  {plan.description}</Card.Text>
-          <Card.Text>Price : ${plan.value.toString().substring(0,2)}</Card.Text>
+          <Card.Text>Price : ${plan.value/100}</Card.Text>
+          {/* Converted cents to dollars */}
           <Button style={{marginLeft:200,
            color:"white", 
           backgroundColor:"green",
@@ -51,9 +53,8 @@ function Billing({ plans = [], cards = [], company = null }) {
         </Card.Body>
       </Card>
       </Box>
-
+{/* used card and button components from react-bootstrap to display the card and plan details on to the UI */}
       <h3>Payment Method</h3>
-      {/*TODO: delete this and replace with your UI component*/}
       <Box sx={{
         width: 400,
         height: 200,
